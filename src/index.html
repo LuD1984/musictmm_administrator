@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.7.4/css/uikit.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="index.css" />
+    <title>My Website</title>
+</head>
+
+<body>
+    <header>
+        <div class="btn-menu">
+            <span class="btn-administrator">[ Administrator ]</span>
+            <span class="btn-redactor">[ Music editor ]</span>
+            <span class="btn-redactor-upload" onclick="showFilePicker()">[ Upload ]</span>
+            <span class="btn-redactor-last-upload" onclick="lastUpload()">[ Last upload ]</span>
+        </div>
+        <div class="btn-close-min">
+            <a href="#" class="btn-min"><i class="fa-solid fa-window-minimize"></i></a>
+            <a href="#" class="btn-close"><i class="fa-solid fa-xmark"></i></a>
+        </div>
+    </header>
+
+    <main class="uk-container">
+        <!-- redactor -->
+        <p class="nav-redactor" uk-margin>
+        <h3 class="upload-message">Files are being uploaded to the cloud. Please wait...</h3>
+        </p>
+        <div class="redactor-table"></div>
+        <!-- end redactor -->
+    </main>
+
+    <footer class="uk-container">
+        <!-- Your footer content goes here -->
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.7.4/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.7.4/js/uikit-icons.min.js"></script>
+
+
+    <script src="renderer.js"></script>
+    <script src="socketio.js"></script>
+    <script src="upload.js"></script>
+
+
+    <!--****************************************************MODALS***************************************************************-->
+    <div id="modal-last-upload" uk-modal>
+        <div class="uk-modal-dialog uk-modal-dialog-last-upload">
+            <button class="uk-modal-close-default" type="button" uk-close>.</button>
+            <div class="uk-modal-header">
+                <h2 class="uk-modal-title title-modal-last-upload">ALL SONGS FROM LAST UPLOAD TABLE</h2>
+            </div>
+            <div class="button-group-modal-last-upload">
+                <div class="btn-menu">
+                    <span class="modal-btn-last-upload-create" onclick="createNewPlFromLastUpload()">[ create new
+                        playlist ]</span>
+                    <span class="modal-btn-last-upload-add" onclick="insertLastUploadToPlaylist()">[ insert to playlist
+                        ]</span>
+                </div>
+            </div>
+
+            <div class="uk-modal-body" id="modal-last-upload-content">
+                <div class="uk-grid-collapse uk-child-width-expand@s uk-text-center uk-margin-large-top" uk-grid>
+                    <div class="list-songs-last-upload">
+                        <ul class="uk-list list-last-upload-songs"></ul>
+                    </div>
+                    <div class="control-last-upload">
+                        <h3 class="header-control-last-upload"></h3>
+                        <div class="form-create-playlist-from-last-upload">
+                            <input class="uk-input input-control-last-upload" id="name-new-playlist-last-upload"
+                                type="text" placeholder="Enter name playlist">
+                            <input class="uk-input input-control-last-upload" id="discription-new-playlist-last-upload"
+                                type="text" placeholder="Enter description">
+                            <p><button class="submit-create-playlist-last-upload" id="next-1"
+                                    onclick="submitNewPlaylistLastUpload(this.id)">[ next ]</button></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+   
+
+
+
+
+
+</body>
+
+</html>

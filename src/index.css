@@ -1,0 +1,370 @@
+html {
+    /*     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";*/
+    font-family: monospace;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    background: #3b3c3d;
+    color: gray;
+}
+
+html:focus-visible {
+    outline: none;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-image: url(img/bg-general.jpeg);
+    background-size: cover;
+    background-position: bottom;
+    background-blend-mode: multiply;
+    background-color: darkcyan;
+}
+
+
+header {
+    width: 100%;
+    height: 20px;
+    background: black;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    /* добавьте это свойство */
+    justify-content: space-between;
+    /* добавьте это свойство */
+    align-items: center;
+    /* добавьте это свойство */
+}
+
+main {
+    width: 100%;
+    height: 80vh;
+}
+
+tr:hover {
+    color: cadetblue;
+    text-shadow: 0px 0px 5px cadetblue;
+    border-bottom-color: cadetblue;
+    cursor: pointer;
+}
+
+/* classes */
+.uk-container {
+    max-width: 95%;
+}
+
+.btn-menu {
+    width: 70%;
+}
+
+.btn-close-min {
+    width: 5%;
+
+}
+
+.btn-close,
+.btn-min {
+    color: gray;
+    transition: 0.3s;
+}
+
+.btn-min {
+    margin-right: 5%;
+}
+
+.btn-administrator,
+.btn-redactor,
+.btn-redactor-last-upload,
+.btn-redactor-upload,
+.modal-btn-last-upload-create,
+.modal-btn-last-upload-add {
+    color: gray;
+    transition: 0.3s;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.nav-redactor {
+    display: none;
+}
+
+.uk-button-default {
+    background-color: transparent;
+    color: gray;
+    border: none;
+}
+
+
+.redactor-table {
+    display: none;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    font-size: 1rem;
+    text-align: left;
+    color: gray;
+    background: #000000c7;
+    border-radius: 4px;
+    box-shadow: 0 0 5px 3px cadetblue;
+    padding: 10px;
+}
+
+.uk-modal-full .uk-modal-dialog {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    transform: translateY(0);
+    background: black;
+}
+
+.uk-modal-header {
+    display: flow-root;
+    padding: 15px 30px;
+    background: #000;
+    text-align: center;
+    border: none;
+    text-align: center;
+    border-bottom-style: ridge;
+    border-bottom-color: cadetblue;
+    border-bottom-width: 0.5px;
+}
+
+.uk-modal-title {
+    color: cadetblue;
+    text-shadow: 0px 0px 5px cadetblue;
+}
+
+.uk-modal-close-full {
+    top: 0;
+    right: 0;
+    padding: 20px;
+    background: #000;
+    color: gray;
+}
+
+.uk-modal-footer {
+    display: flow-root;
+    padding: 15px 30px;
+    background: #000;
+    border-top: 1px solid cadetblue;
+}
+
+.redactor-img-playlist {
+    cursor: pointer;
+}
+
+.btn-in-card-playlist {
+    background: black;
+    color: grey;
+    width: -webkit-fill-available;
+}
+
+.modal-list-songs {
+    width: 70%;
+    height: 100%;
+    color: cadetblue;
+    background: #000000e6;
+    border-radius: 4px;
+    box-shadow: 0 0 5px 3px cadetblue;
+    overflow: auto;
+}
+
+.uk-notification-message-success {
+    opacity: 1;
+    margin-top: 12%;
+    width: 100%;
+    text-align: center;
+    color: cadetblue;
+    background: #000000c9;
+}
+
+.upload-message {
+    display: none;
+    text-align: center;
+    color: cadetblue;
+    text-shadow: 0 0 5px cadetblue;
+    margin-top: 20%;
+    font-family: monospace;
+}
+
+.title-modal-last-upload {
+    font-size: 1.5rem;
+    font-family: monospace;
+}
+
+.uk-modal-dialog-last-upload {
+    width: 100%;
+    height: 100%;
+    background: #000000ad;
+    box-shadow: 0 0 5px 2px cadetblue;
+}
+
+.button-group-modal-last-upload {
+    text-align: -webkit-center;
+    border-bottom-style: ridge;
+    border-bottom-width: 0.5px;
+    border-bottom-color: cadetblue;
+    background: black;
+}
+
+.uk-margin-large-top {
+    margin-top: 10px !important;
+}
+
+.modal-last-upload-content {
+    width: 95%;
+    height: 80%;
+    padding: 10px 10px;
+}
+
+.list-last-upload-songs {
+    text-align: justify;
+    color: cadetblue;
+}
+
+.control-last-upload {
+    height: 400px;
+    border-style: double;
+    border-color: cadetblue;
+    background: black;
+    box-shadow: 0 0 4px cadetblue;
+}
+
+.header-control-last-upload,
+.insertLastUploadToPlaylist {
+    display: none;
+    color: cadetblue;
+    text-shadow: 0 0 5px cadetblue;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.form-create-playlist-from-last-upload {
+    display: none;
+}
+
+.uk-input,
+.uk-select,
+.uk-textarea {
+    margin-bottom: 5px;
+    max-width: 100%;
+    width: 100%;
+    padding: 0 10px;
+    background: none;
+    color: gray;
+    transition: .2s ease-in-out;
+    text-align: center;
+    border: none;
+    box-shadow: inset 0 0 5px 1px cadetblue;
+    transition-property: color, background-color, border;
+    font-family: monospace;
+}
+
+.input-control-last-upload {
+    width: 80% !important;
+}
+
+.submit-create-playlist-last-upload {
+    background: none;
+    color: gray;
+    font-family: monospace;
+    border: none;
+    font-size: x-large;
+}
+
+.list-songs-last-upload {
+    height: 55vh;
+    overflow: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***************************************************************************************************************** hover */
+.btn-in-card-playlist:hover {
+    background: black;
+    color: cadetblue;
+    box-shadow: inset 0 0px 5px 2px cadetblue;
+    border: cadetblue;
+}
+
+.btn-close:hover,
+.btn-min:hover,
+.uk-button-default:hover {
+    color: cadetblue;
+    text-shadow: 0px 0px 5px cadetblue;
+    cursor: pointer;
+}
+
+.btn-administrator:hover,
+.btn-redactor:hover,
+.btn-redactor-last-upload:hover,
+.btn-redactor-upload:hover,
+.modal-btn-last-upload-create:hover,
+.modal-btn-last-upload-add:hover,
+.submit-create-playlist-last-upload:hover {
+    color: cadetblue;
+    text-shadow: 0px 0px 5px cadetblue;
+    cursor: pointer;
+}
+
+.uk-close:focus,
+.uk-close:hover {
+    color: cadetblue;
+    outline: none;
+}
+
+.modal-btn-last-upload-create:focus,
+.modal-btn-last-upload-add:focus,
+.submit-create-playlist-last-upload:focus {
+    color: cadetblue;
+    outline: none;
+}
+
+
+
+
+
+
+
+/* focus */
+.uk-button-default:focus {
+    outline: none;
+    color: cadetblue;
+    text-shadow: 0px 0px 5px cadetblue;
+}
+
+.btn-in-card-playlist:focus {
+    outline: none;
+    color: cadetblue;
+    text-shadow: 0px 0px 5px cadetblue;
+    background: black;
+}
+
+.btn-redactor-last-upload:focus,
+.btn-redactor-upload:focus {
+    outline: none;
+    color: cadetblue;
+    text-shadow: 0px 0px 5px cadetblue;
+}
+
+/* uk */
