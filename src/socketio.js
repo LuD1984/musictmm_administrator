@@ -57,6 +57,11 @@ $('.btn-redactor').click(() => {
 
 //answer from server
 socket.on('redactor-data', (data) => { updateRedactor(data) });
+socket.on('done_create_new_playlist', () => {
+    UIkit.notification({message: '<span uk-icon=\'icon: check\'></span> Create playlist status: OK'})
+    setTimeout(() => { window.location.reload() }, 3000);
+})
 
 //get last upload songs
 function lastUpload () { socket.emit('getLastUpload') }
+

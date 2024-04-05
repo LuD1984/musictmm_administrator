@@ -2,10 +2,9 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 
 function createWindow() {
     const mainWindow = new BrowserWindow({
-        width: 800,
-        height: 600,
+        fullscreen: true,
         kiosk: false,
-        frame: true,
+        frame: false,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,

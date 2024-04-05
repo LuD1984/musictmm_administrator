@@ -1,5 +1,6 @@
 const mm = require('music-metadata-browser');
 
+
 function showFilePicker() {
     const input = document.createElement('input');
     input.type = 'file';
@@ -54,6 +55,10 @@ const insertLastUploadToPlaylist = () => {
     $('.header-control-last-upload').show(1000);
 }
 
+let PRIVAT = 0;
+let BUSINESS = "NULL";
+let MOOD = "NULL";
+let STYLE_LIST = "NULL";
 async function submitNewPlaylistLastUpload(id) {
 
     switch (id) {
@@ -98,6 +103,7 @@ async function submitNewPlaylistLastUpload(id) {
             break;
 
         case 'private':
+            PRIVAT = 1;
             try {
                 $('.btn-group-private-public').hide();
                 $('.btn-group-private-public').empty();
@@ -108,11 +114,11 @@ async function submitNewPlaylistLastUpload(id) {
                         onclick="submitNewPlaylistLastUpload(this.id)">[ confirm ]
                     </button>
                 `);
-    
+
                 globalData.allClients.forEach(element => {
                     $('.select-clients-last-upload').append(`<option>${element.name_organization}</option>`);
                 });
-    
+
             } catch (error) {
                 console.log(error)
             } finally {
@@ -124,11 +130,20 @@ async function submitNewPlaylistLastUpload(id) {
         case 'confirm-private':
             const dataNewPlaylist = {
                 name: $('#nameNewPlaylistLastUpload').text(),
-                discription: $('#discriptionNewPlaylistLastUpload').text(),
-                client: $('.select-clients-last-upload').val()
+                description: $('#discriptionNewPlaylistLastUpload').text(),
+                owner: $('.select-clients-last-upload').val(),
+                privat: PRIVAT,
+                date_create: moment().format('YYYY-MM-DD'),
+                time_create: moment().format('HH:mm:ss'),
+                business: BUSINESS,
+                mood: MOOD,
+                style_list: STYLE_LIST,
+                poster: 'deffault.jpeg',
+                count_songs: globalData.arrayLastUploadSongs.length,
+                songs: globalData.arrayLastUploadSongs
             }
 
-            console.log(dataNewPlaylist);
+            socket.emit('save_new_playlist', dataNewPlaylist);
             break;
     }
 
