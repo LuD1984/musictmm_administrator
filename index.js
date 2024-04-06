@@ -1,9 +1,23 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, autoUpdater } = require('electron');
+const os = require('os');
+
+
+autoUpdater.setFeedURL({
+    provider: 'github',
+    owner: 'LuD1984',
+    repo: 'musictmm_administrator',
+    private: false
+  });
+  
+  // Проверка обновлений при запуске приложения
+  app.on('ready', () => {
+    autoUpdater.checkForUpdatesAndNotify();
+  });
 
 function createWindow() {
     const mainWindow = new BrowserWindow({
         fullscreen: true,
-        kiosk: false,
+        kiosk: true,
         frame: false,
         webPreferences: {
             nodeIntegration: true,
@@ -15,16 +29,14 @@ function createWindow() {
     // Load your application's HTML file
     mainWindow.loadFile('src/index.html');
     // open dev tools
-    //mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
 
     //функция для приема сообщений
     ipcMain.on('close', (event, arg) => {
         app.quit();
     });
 
-    ipcMain.on('minimize', (event, arg) => {
-        app.hide();
-    });
+    ipcMain.on('minimize', (event, arg) => { os.platform() === 'win32' ? mainWindow.minimize() : app.hide() });
 }
 
 app.whenReady().then(() => {
