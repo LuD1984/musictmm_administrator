@@ -1,18 +1,5 @@
-const { app, BrowserWindow, ipcMain, autoUpdater } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const os = require('os');
-
-
-autoUpdater.setFeedURL({
-    provider: 'github',
-    owner: 'LuD1984',
-    repo: 'musictmm_administrator',
-    private: false
-  });
-  
-  // Проверка обновлений при запуске приложения
-  app.on('ready', () => {
-    autoUpdater.checkForUpdatesAndNotify();
-  });
 
 function createWindow() {
     const mainWindow = new BrowserWindow({
@@ -40,6 +27,7 @@ function createWindow() {
 }
 
 app.whenReady().then(() => {
+   
     createWindow();
 
     app.on('activate', function () {
