@@ -59,6 +59,8 @@ let PRIVAT = 0;
 let BUSINESS = "NULL";
 let MOOD = "NULL";
 let STYLE_LIST = "NULL";
+let PUBLIC_NAME = "NULL";
+let PUBLIC_DESCRIPTION = "NULL";
 async function submitNewPlaylistLastUpload(id) {
 
     switch (id) {
@@ -98,7 +100,29 @@ async function submitNewPlaylistLastUpload(id) {
             break;
 
         case 'public':
-            console.log('public');
+
+            socket.emit('muzred_data');
+
+            socket.on('redactor-data', (data) => {
+                PUBLIC_NAME = $('#nameNewPlaylistLastUpload').text();
+                PUBLIC_DESCRIPTION = $('#discriptionNewPlaylistLastUpload').text();
+                $('.form-create-playlist-from-last-upload').empty();
+                $('.form-create-playlist-from-last-upload').append(`
+                    <select class="uk-select" id="style-new-pl"></select>
+                    <select class="uk-select" id="mood-new-pl"></select>
+                    <select class="uk-select" id="business-new-pl"></select>
+                    <button class="uk-button-default" id="confirm-public" style="font-size: 1.2rem; font-family: monospace;" 
+                        onclick="submitNewPlaylistLastUpload(this.id)">[ confirm ]
+                    </button>
+                `);
+                for(key in data) {
+                    console.log(key);
+                    if(key === 'style_category') { for(const item in data[key]) { $('#style-new-pl').append(`<option>${data[key][item].name}</option>`) } }
+                    else if(key === 'mood_category') { for(const item in data[key]) { $('#mood-new-pl').append(`<option>${data[key][item].name}</option>`) } }
+                    else if(key === 'business_category') { for(const item in data[key]) { $('#business-new-pl').append(`<option>${data[key][item].name}</option>`) } }
+                    
+                }
+            });
 
             break;
 
@@ -144,6 +168,29 @@ async function submitNewPlaylistLastUpload(id) {
             }
 
             socket.emit('save_new_playlist', dataNewPlaylist);
+            break;
+
+            case 'confirm-public':
+            const dataNewPlaylistPublic = {
+                name: PUBLIC_NAME,
+                description: PUBLIC_DESCRIPTION,
+                owner: "NULL",
+                privat: PRIVAT,
+                date_create: moment().format('YYYY-MM-DD'),
+                time_create: moment().format('HH:mm:ss'),
+                business: $('#business-new-pl').val(),
+                mood: $('#mood-new-pl').val(),
+                style_list: $('#style-new-pl').val(),
+                poster: 'deffault.jpeg',
+                count_songs: globalData.arrayLastUploadSongs.length,
+                songs: globalData.arrayLastUploadSongs
+            }
+
+            socket.emit('save_new_playlist', dataNewPlaylistPublic);
+            UIkit.notification({message: '<span uk-icon=\'icon: check\'></span> Create playlist status: OK'})
+            setTimeout(() => {
+                window.location.reload();
+            }, 3000);
             break;
     }
 
