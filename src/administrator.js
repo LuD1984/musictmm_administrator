@@ -1,6 +1,7 @@
 
 
 const DATA = { clients: [] }
+
 socket.on('all_clients', (clients) => { DATA.clients = clients })
 
 
@@ -21,6 +22,7 @@ function printModalEditClient(client) {
             input.className = 'input-data-edit-client';
             input.value = client[item];
             input.id = item;
+
 
             if (item === 'who_added' || item === 'last_connect' || item === 'id') {
                 input.setAttribute('readonly', 'readonly');
@@ -71,7 +73,7 @@ function printAdmin() {
     navAdministrator.setAttribute('uk-margin', '');
     navAdministrator.innerHTML = `
         <button class="btn-nav-administrator" onclick="showAllClients()">[ all clients ]</button>
-        <button class="btn-nav-administrator">[ add client ]</button>
+        <button class="btn-nav-administrator" uk-toggle="target: #modal-add-user">[ add client ]</button>
     `;
 
     const bodyAdministrator = document.createElement('div');
@@ -118,6 +120,8 @@ function saveDataClient() {
             dataInputs[id] = value;
         });
     });
+
+
     dataInputs.id = parseInt(dataInputs.id);
     for (const key in DATA.clients) {
         if (parseInt(DATA.clients[key].id) === parseInt(dataInputs.id)) {
@@ -143,9 +147,45 @@ function saveDataClient() {
     socket.emit('edit_data_user', dataInputs);
 }
 
+function addNewClient(){
 
+    const userForm = document.getElementById("user-form");
+    const inputs = userForm.querySelectorAll("input");
+    const flag = true;
+    const dataInputs = {};
 
+    // Пример использования полученных инпутов
+    inputs.forEach(function(input) {
+        dataInputs[input.name] = input.value;
 
+        if(input.value === '') {
+            UIkit.notification({message: `<span style="color: red; width: 50%;">Error!!! Enter [ ${input.name} ] data!!!</span>`, timeout: 5000});
+            flag = false;
+        }
+    });
 
+    dataInputs['who_added'] = 'Boss'; //пока не готова авторизация
 
+    if(flag) { socket.emit('addNewClient', dataInputs) }
+    else { return }
+
+}
+
+function openModalDellClient() {
+    const editDataBlocks = document.querySelectorAll('.client-edit-data');
+    const dataClient = {};
+
+    editDataBlocks.forEach((block) => {
+        const inputs = block.querySelectorAll('input');
+        inputs.forEach((input) => {
+            if(input.id === 'id') { $('.id-client-for-delete').val(input.value) }
+            else if(input.id === 'name_client') { $('.title-modal-dell-client').text(`Delete ${input.value} ?`) }
+        });
+    });
+
+}
+
+function dellClient(){
+    socket.emit('delete_client', $('.id-client-for-delete').val());
+}
 

@@ -365,9 +365,18 @@ tr:hover {
     font-family: monospace;
 }
 
+.title-modal-add-client{
+    text-align: center;
+}
 
+.title-modal-dell-client{
+    text-align: center;
+    color: red;
+}
 
-
+.modal-body-dell-client{
+    height: 20%;
+}
 
 
 

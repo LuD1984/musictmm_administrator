@@ -16,7 +16,7 @@ function createWindow() {
     // Load your application's HTML file
     mainWindow.loadFile('src/index.html');
     // open dev tools
-    mainWindow.webContents.openDevTools();
+    //mainWindow.webContents.openDevTools();
 
     //функция для приема сообщений
     ipcMain.on('close', (event, arg) => {
