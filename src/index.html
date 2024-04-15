@@ -15,7 +15,7 @@
 <body>
     <header>
         <div class="btn-menu">
-            <span class="btn-administrator">[ Administrator ]</span>
+            <span class="btn-administrator" onclick="printAdmin()">[ Administrator ]</span>
             <span class="btn-redactor">[ Music editor ]</span>
             <span class="btn-redactor-upload" onclick="showFilePicker()">[ Upload ]</span>
             <span class="btn-redactor-last-upload" onclick="lastUpload()">[ Last upload ]</span>
@@ -26,7 +26,8 @@
         </div>
     </header>
 
-    <main class="uk-container">
+    <main class="uk-container main-window">
+
         <!-- redactor -->
         <p class="nav-redactor" uk-margin>
         <h3 class="upload-message">Files are being uploaded to the cloud. Please wait...</h3>
@@ -45,6 +46,7 @@
 
     <script src="renderer.js"></script>
     <script src="socketio.js"></script>
+    <script src="administrator.js"></script>
     <script src="upload.js"></script>
 
 
@@ -84,9 +86,25 @@
             </div>
         </div>
     </div>
+
+    <!-- modal edit user -->
+
+    <div id="modal-close-outside" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body">
+<!--             <button class="uk-modal-close-outside" type="button" uk-close></button>
+ -->            <h2 class="uk-modal-title title-modal-edit-client"></h2>
+            <div class="client-edit-data"></div>
+            <hr>
+            <p class="btn-group-edit-client" uk-margin>
+                <span class="btn-data-edit-client" onclick="saveDataClient()">[ save ]</span>
+                <span class="btn-data-edit-dell-client">[ delete client ]</span>
+                <span class="btn-data-edit-client" onclick="UIkit.modal('#modal-close-outside').hide()">[ exit ]</span>
+            </p>
+        </div>
+    </div>
     <!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
-   
+
 
 
 

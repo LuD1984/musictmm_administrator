@@ -16,7 +16,7 @@ body {
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    background-image: url(img/bg-general.jpeg);
+    background-image: url(img/bg-general.webp);
     background-size: cover;
     background-position: bottom;
     background-blend-mode: multiply;
@@ -283,6 +283,87 @@ tr:hover {
 
 
 
+.administrator {
+    width: 100%;
+    height: 100%;
+}
+
+.btn-nav-administrator{
+    background: none;
+    border: none;
+    color: gray;
+    font-family: monospace;
+}
+
+.body-administrator{
+    width: 100%;
+    height: 100%;
+}
+
+.card-body-administrator{
+    background-color: #0000009c !important;
+    box-shadow: 0 0 5px 2px aqua;
+}
+
+.title-card-body-administrator,
+.title-modal-edit-client{
+    text-align: center;
+    font-family: monospace;
+    color: darkcyan !important;
+}
+
+.title-offline-administrator{
+    color: red !important;
+}
+
+.body-work-space-administrator{
+    overflow: auto;
+}
+
+.li-card-body-administrator{
+    font-size: small;
+    font-family: monospace;
+    cursor: pointer;
+}
+
+
+.uk-modal-body{
+    background-color: #0000009c !important;
+    box-shadow: 0 0 5px 2px aqua;
+    width: 85%;
+    height: 95%;
+}
+
+.client-edit-data{
+    height: 80%;
+    text-align: start;
+}
+
+.uk-notification-message{
+    background-color: #0000008c;
+    color: aqua;
+    font-size: 1rem;
+    line-height: 1.4;
+    cursor: pointer;
+    box-shadow: 0 0 5px 2px aqua;
+}
+
+.input-data-edit-client{
+    background: none;
+    border: none;
+    color: darkcyan;
+    font-size: 1.2rem;
+    font-family: monospace;
+    outline: none;
+}
+
+.btn-group-edit-client{
+    text-align: center;
+}
+
+.btn-data-edit-client{
+    font-family: monospace;
+}
 
 
 
@@ -321,9 +402,18 @@ tr:hover {
 .btn-redactor-upload:hover,
 .modal-btn-last-upload-create:hover,
 .modal-btn-last-upload-add:hover,
-.submit-create-playlist-last-upload:hover {
+.submit-create-playlist-last-upload:hover,
+.btn-nav-administrator:hover,
+.li-card-body-administrator:hover,
+.btn-data-edit-client:hover {
     color: cadetblue;
     text-shadow: 0px 0px 5px cadetblue;
+    cursor: pointer;
+}
+
+.btn-data-edit-dell-client:hover{
+    color: darkred;
+    text-shadow: 0px 0px 5px darkred;
     cursor: pointer;
 }
 
@@ -361,10 +451,29 @@ tr:hover {
 }
 
 .btn-redactor-last-upload:focus,
-.btn-redactor-upload:focus {
+.btn-redactor-upload:focus,
+.btn-nav-administrator:focus,
+.li-card-body-administrator:focus,
+.btn-data-edit-client:focus
+ {
     outline: none;
     color: cadetblue;
     text-shadow: 0px 0px 5px cadetblue;
+}
+
+.btn-data-edit-dell-client:focus{
+    outline: none;
+    color: darkred;
+    text-shadow: 0px 0px 5px darkred;
+}
+
+.input-data-edit-client:focus{
+    box-shadow: 0 0 5px 2px aqua;
+}
+
+.readonly-no-shadow:focus {
+    /* Стили инпута с атрибутом readonly (без тени) */
+    box-shadow: none !important;
 }
 
 /* uk */

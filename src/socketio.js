@@ -44,8 +44,11 @@ $('.btn-administrator').click(() => {
     $('.btn-administrator').css({'color': 'aqua', 'text-shadow': '0 0 10px aqua'});
     $('.btn-redactor').css({'color': 'grey', 'text-shadow': 'none'});
 
+    $('.nav-redactor', '.redactor-table').hide(500);
+    UIkit.notification({message: '<span uk-icon=\'icon: check\'></span> Get all data administrator', timeout: 1000});
     socket.emit('joinRoom', 'administrator');
 });
+
 $('.btn-redactor').click(() => {
     $('.btn-redactor').css({'color': 'aqua', 'text-shadow': '0 0 10px aqua'});
     $('.btn-administrator').css({'color': 'grey', 'text-shadow': 'none'});
@@ -61,6 +64,10 @@ socket.on('done_create_new_playlist', () => {
     UIkit.notification({message: '<span uk-icon=\'icon: check\'></span> Create playlist status: OK'})
     setTimeout(() => { window.location.reload() }, 3000);
 })
+
+socket.on('success_edit_client', () => { UIkit.notification({message: '<span uk-icon=\'icon: check\'></span> Success edit data client', timeout: 1000}); });
+socket.on('error_edit_client', () => { UIkit.notification({message: '<span style="color: red" uk-icon=\'icon: check\'></span> Error edit data client!!!', timeout: 2000}); });
+
 
 //get last upload songs
 function lastUpload () { socket.emit('getLastUpload') }
