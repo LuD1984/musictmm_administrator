@@ -89,13 +89,13 @@ function printAdmin() {
         <div>
             <div class="uk-card uk-card-primary uk-card-body card-body-administrator">
                 <h3 class="uk-card-title title-card-body-administrator title-online-administrator">Online clients</h3>
-                
+                <ul class="uk-list online-clients"></ul>
             </div>
         </div>
         <div>
             <div class="uk-card uk-card-secondary uk-card-body card-body-administrator">
                 <h3 class="uk-card-title title-card-body-administrator title-offline-administrator">Offline clients</h3>
-                
+                <ul class="uk-list offline-clients"></ul>
             </div>
         </div>
     `;

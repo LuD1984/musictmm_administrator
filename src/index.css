@@ -378,7 +378,15 @@ tr:hover {
     height: 20%;
 }
 
+.offline-clients{
+    color: #b97171 !important;
+    font-family: monospace !important;
+}
 
+.online-clients{
+    color: #4caeae !important;
+    font-family: monospace !important;
+}
 
 
 

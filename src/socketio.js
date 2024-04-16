@@ -18,7 +18,7 @@ socket.on('disconnect', () => {
     console.log('Disconnected from server');
 });
 
-// Handle incoming messages
+// Handle incoming messages*************************************************************************************************
 socket.on('message', (message) => {
     console.log('Received message:', message);
 });
@@ -36,7 +36,7 @@ socket.on('last_upload', (data) => {
 
 })
 
-// Send a message to the room
+// Send a message to the room*************************************************************************************************
 socket.emit('message', 'Hello, administrator!');
 
 //events
@@ -47,6 +47,7 @@ $('.btn-administrator').click(() => {
     $('.nav-redactor', '.redactor-table').hide(500);
     UIkit.notification({ message: '<span uk-icon=\'icon: check\'></span> Get all data administrator', timeout: 1000 });
     socket.emit('joinRoom', 'administrator');
+    socket.emit('get_online_clients');
 });
 
 $('.btn-redactor').click(() => {
@@ -58,7 +59,7 @@ $('.btn-redactor').click(() => {
 });
 
 
-//answer from server
+//answer from server*************************************************************************************************
 socket.on('redactor-data', (data) => { updateRedactor(data) });
 socket.on('done_create_new_playlist', () => {
     UIkit.notification({ message: '<span uk-icon=\'icon: check\'></span> Create playlist status: OK' })
@@ -82,6 +83,33 @@ socket.on('delete_user_status', (status) => {
     setTimeout(() => { window.location.reload() }, 6000);
 })
 
-//get last upload songs
+function onlineOfflineSort(data) {
+    
+    const arrOnlineId = [];
+    $('.online-clients').empty();
+    $('.offline-clients').empty();
+
+    for(const key of Object.keys(data)){ arrOnlineId.push(parseInt(key)) }
+    console.log(arrOnlineId);
+    for(const i of Object.keys(DATA.clients)) {
+
+        const li = document.createElement('li');
+        li.id = DATA.clients[i].id;
+        li.innerHTML = DATA.clients[i].name_organization;
+
+        if(!arrOnlineId.includes(DATA.clients[i].id)) { $('.offline-clients').append(li) }
+        else { $('.online-clients').append(li) }
+    }
+}
+
+socket.on('connect_client', (data) => { onlineOfflineSort(data) });
+socket.on('disconnect_client', (data) => { onlineOfflineSort(data) });
+socket.on('online_clients', (data) => { onlineOfflineSort(data) });
+
+
+
+
+
+//get last upload songs*************************************************************************************************
 function lastUpload() { socket.emit('getLastUpload') }
 
