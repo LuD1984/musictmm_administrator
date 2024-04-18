@@ -83,6 +83,40 @@ socket.on('delete_user_status', (status) => {
     setTimeout(() => { window.location.reload() }, 6000);
 })
 
+
+
+function printModalEditClientSocket(client) {
+    $('.title-modal-edit-client').text(client.name_organization);
+
+    const exeptionItem = ['mac_adres', 'playlists', 'avatar', 'last_location', 'online', 'songs', 'information', 'type']
+    const clientDataBlock = document.querySelector('.client-edit-data'); // Используем querySelector для выбора одного элемента
+    clientDataBlock.innerHTML = ''; // Удаляем текущее содержимое элемента
+
+    for (const item of Object.keys(client)) {
+        if (!exeptionItem.includes(item)) {
+            const p = document.createElement('p');
+            const label = document.createElement('label');
+            label.textContent = `${item}: `;
+            const input = document.createElement('input');
+            input.setAttribute('placeholder', item);
+            input.className = 'input-data-edit-client';
+            input.value = client[item];
+            input.id = item;
+
+
+            if (item === 'who_added' || item === 'last_connect' || item === 'id') {
+                input.setAttribute('readonly', 'readonly');
+                input.classList.add('readonly-no-shadow');
+            }
+
+            label.appendChild(input);
+            p.appendChild(label);
+            clientDataBlock.appendChild(p);
+        }
+    }
+
+}
+
 function onlineOfflineSort(data) {
     
     const arrOnlineId = [];
@@ -90,16 +124,22 @@ function onlineOfflineSort(data) {
     $('.offline-clients').empty();
 
     for(const key of Object.keys(data)){ arrOnlineId.push(parseInt(key)) }
-    console.log(arrOnlineId);
+    
     for(const i of Object.keys(DATA.clients)) {
 
         const li = document.createElement('li');
         li.id = DATA.clients[i].id;
         li.innerHTML = DATA.clients[i].name_organization;
+        li.className = 'li-card-body-administrator';
+        li.setAttribute("uk-toggle", "target: #modal-close-outside");
 
         if(!arrOnlineId.includes(DATA.clients[i].id)) { $('.offline-clients').append(li) }
         else { $('.online-clients').append(li) }
+
+        li.addEventListener('click', function () { printModalEditClientSocket(DATA.clients[i]) });
     }
+    
+    $('.count-offline-clients').text(DATA.clients.length - arrOnlineId.length);
 }
 
 socket.on('connect_client', (data) => { onlineOfflineSort(data) });

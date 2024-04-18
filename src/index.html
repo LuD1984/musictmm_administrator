@@ -98,7 +98,8 @@
             <hr>
             <p class="btn-group-edit-client" uk-margin>
                 <span class="btn-data-edit-client" onclick="saveDataClient()">[ save ]</span>
-                <span class="btn-data-edit-dell-client" onclick="openModalDellClient()" uk-toggle="target: #modal-dell-user">[ delete client ]</span>
+                <span class="btn-data-edit-dell-client" onclick="openModalDellClient()"
+                    uk-toggle="target: #modal-dell-user">[ delete client ]</span>
                 <span class="btn-data-edit-client" onclick="UIkit.modal('#modal-close-outside').hide()">[ exit ]</span>
             </p>
         </div>
@@ -108,7 +109,7 @@
     <div id="modal-add-user" uk-modal>
         <div class="uk-modal-dialog uk-modal-body">
             <h2 class="uk-modal-title title-modal-add-client">New client:</h2>
-            
+
             <form class="user" id="user-form">
                 <div class="uk-margin">
                     <label for="name_client" class="uk-form-label">Name:</label>
@@ -131,10 +132,11 @@
                     <input id="name_organization" name="name_organization" class="uk-input" type="text" required>
                 </div>
             </form>
-            
+
             <p class="uk-text-center">
                 <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-                <button id="save-button" class="uk-button uk-button-default uk-modal-close" type="button" onclick="addNewClient()">Save</button>
+                <button id="save-button" class="uk-button uk-button-default uk-modal-close" type="button"
+                    onclick="addNewClient()">Save</button>
             </p>
         </div>
     </div>
@@ -145,14 +147,16 @@
             <p class="uk-text-center">
                 <input type="hidden" class="id-client-for-delete">
                 <button class="uk-button uk-button-default uk-modal-close" type="button">[ Cancel ]</button>
-                <button id="save-button" class="uk-button uk-button-default uk-modal-close" type="button" onclick="dellClient()">[ delete ]</button>
+                <button id="save-button" class="uk-button uk-button-default uk-modal-close" type="button"
+                    onclick="dellClient()">[ delete ]</button>
             </p>
         </div>
     </div>
     <!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
-
-
+    <script>
+       
+    </script>
 
 
 

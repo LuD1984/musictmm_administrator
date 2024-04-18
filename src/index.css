@@ -303,6 +303,7 @@ tr:hover {
 .card-body-administrator{
     background-color: #0000009c !important;
     box-shadow: 0 0 5px 2px aqua;
+    padding: 5px 5px !important;
 }
 
 .title-card-body-administrator,
@@ -387,6 +388,34 @@ tr:hover {
     color: #4caeae !important;
     font-family: monospace !important;
 }
+
+.full-width-input {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.search-all{
+    outline: none;
+    background-color: black;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 0 0 3px 1px aqua;
+    color: darkcyan;
+    font-family: monospace;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

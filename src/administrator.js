@@ -74,6 +74,7 @@ function printAdmin() {
     navAdministrator.innerHTML = `
         <button class="btn-nav-administrator" onclick="showAllClients()">[ all clients ]</button>
         <button class="btn-nav-administrator" uk-toggle="target: #modal-add-user">[ add client ]</button>
+        <input type="text" class="search-all" placeholder="Поиск">
     `;
 
     const bodyAdministrator = document.createElement('div');
@@ -104,10 +105,27 @@ function printAdmin() {
     divAdministrator.appendChild(bodyAdministrator);
 
     $('.main-window').append(divAdministrator);
+
+    const searchInput = document.querySelector('.search-all');
+    const allLists = document.querySelectorAll('.online-clients, .offline-clients, .body-work-space-administrator');
+
+
+    searchInput.addEventListener('input', function () {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+
+        allLists.forEach(function (list) {
+            Array.from(list.getElementsByTagName('li')).forEach(function (item) {
+                const text = item.textContent.toLowerCase();
+                const isVisible = text.includes(searchTerm);
+
+                item.style.display = isVisible ? 'block' : 'none';
+            });
+        });
+    });
 }
 
 function saveDataClient() {
-    
+
     const editDataBlocks = document.querySelectorAll('.client-edit-data');
     const dataInputs = {};
 
@@ -147,7 +165,7 @@ function saveDataClient() {
     socket.emit('edit_data_user', dataInputs);
 }
 
-function addNewClient(){
+function addNewClient() {
 
     const userForm = document.getElementById("user-form");
     const inputs = userForm.querySelectorAll("input");
@@ -155,18 +173,18 @@ function addNewClient(){
     const dataInputs = {};
 
     // Пример использования полученных инпутов
-    inputs.forEach(function(input) {
+    inputs.forEach(function (input) {
         dataInputs[input.name] = input.value;
 
-        if(input.value === '') {
-            UIkit.notification({message: `<span style="color: red; width: 50%;">Error!!! Enter [ ${input.name} ] data!!!</span>`, timeout: 5000});
+        if (input.value === '') {
+            UIkit.notification({ message: `<span style="color: red; width: 50%;">Error!!! Enter [ ${input.name} ] data!!!</span>`, timeout: 5000 });
             flag = false;
         }
     });
 
     dataInputs['who_added'] = 'Boss'; //пока не готова авторизация
 
-    if(flag) { socket.emit('addNewClient', dataInputs) }
+    if (flag) { socket.emit('addNewClient', dataInputs) }
     else { return }
 
 }
@@ -178,14 +196,14 @@ function openModalDellClient() {
     editDataBlocks.forEach((block) => {
         const inputs = block.querySelectorAll('input');
         inputs.forEach((input) => {
-            if(input.id === 'id') { $('.id-client-for-delete').val(input.value) }
-            else if(input.id === 'name_client') { $('.title-modal-dell-client').text(`Delete ${input.value} ?`) }
+            if (input.id === 'id') { $('.id-client-for-delete').val(input.value) }
+            else if (input.id === 'name_client') { $('.title-modal-dell-client').text(`Delete ${input.value} ?`) }
         });
     });
 
 }
 
-function dellClient(){
+function dellClient() {
     socket.emit('delete_client', $('.id-client-for-delete').val());
 }
 
